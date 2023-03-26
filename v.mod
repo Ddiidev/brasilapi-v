@@ -1,5 +1,5 @@
 Module {
-	name: 'BrasilApi'
+	name: 'brasilapi'
 	description: ''
 	version: ''
 	license: ''
