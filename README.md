@@ -14,11 +14,11 @@ Uma [lib](https://crates.io/crates/brasilapi) para a API do [BrasilAPI](https://
 
 # Features
 - [x] **CEP (Zip code)**
-- [ ] **DDD**
+- [X] **DDD**
 - [ ] **Bank**
 - [x] **Corretoras**
 - [x] **CNPJ**
-- [ ] **Feriados Nacionais**
+- [X] **Feriados Nacionais**
 - [ ] **Registros de domínios br**
 - [ ] **IBGE**
 - [ ] **Tabela FIPE**
