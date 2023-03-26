@@ -1,7 +1,7 @@
 module v1
 
 pub struct Corretora {
-	pub:
+pub:
 	cnpj                     string
 	@type                    string
 	nome_social              string

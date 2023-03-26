@@ -3,10 +3,11 @@ module v1
 import net.http
 import json
 import cnpj.errors
+import utils
 
 const uri = 'https://brasilapi.com.br/api/cnpj/v1'
 
-// Retorna os dados do CNPJ(Cadastro Nacional da Pessoa Jurídica)
+// get_cnpj Retorna os dados do CNPJ(Cadastro Nacional da Pessoa Jurídica)
 //
 // https://brasilapi.com.br/docs#tag/CNPJ
 //
@@ -22,11 +23,7 @@ const uri = 'https://brasilapi.com.br/api/cnpj/v1'
 //
 // Caso CNPJ não seja encontrado, então irá ser retornado um objeto de erro "errors.CnpjError"
 pub fn get_cnpj(cnpj_code_ string) !Cnpj {
-	mut cnpj_code := cnpj_code_
-
-	for chr in ['.', '/', '-', ' '] {
-		cnpj_code = cnpj_code.replace(chr, '')
-	}
+	mut cnpj_code := utils.adjust_string_cnpj(cnpj_code_)
 
 	resp := http.get('${v1.uri}/${cnpj_code}') or {
 		return errors.CnpjError{

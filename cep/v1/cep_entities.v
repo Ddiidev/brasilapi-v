@@ -1,7 +1,7 @@
 module v1
 
 pub struct Cep {
-	pub:
+pub:
 	cep          string
 	state        string
 	city         string

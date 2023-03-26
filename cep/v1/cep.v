@@ -4,10 +4,11 @@ import net.http
 import json
 import cep.errors
 
+// https://brasilapi.com.br/docs#tag/CEP
 const uri = 'https://brasilapi.com.br/api/cep/v1'
 
-// Retorna os dados do CEP(Código de Endereçamento Postal).
-// https://brasilapi.com.br/docs#tag/CEP
+// get_cep Retorna os dados do CEP(Código de Endereçamento Postal).
+// https://brasilapi.com.br/docs#tag/CEP/paths/~1cep~1v1~1{cep}/get
 //
 // Exemplo de uso:
 // ```

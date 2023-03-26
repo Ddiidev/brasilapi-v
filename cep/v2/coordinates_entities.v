@@ -1,7 +1,7 @@
 module v2
 
 pub struct Coordinates {
-	pub:
+pub:
 	longitude string
 	latitude  string
 }

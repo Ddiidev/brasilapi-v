@@ -4,11 +4,12 @@ import net.http
 import cep.errors
 import json
 
+// https://brasilapi.com.br/docs#tag/CEP-V2
 const uri = 'https://brasilapi.com.br/api/cep/v2'
 
 // Retorna os dados do CEP(Código de Endereçamento Postal).
 // Com a adição da geolocalização.
-// https://brasilapi.com.br/docs#tag/CEP-V2
+// https://brasilapi.com.br/docs#tag/CEP-V2/paths/~1cep~1v2~1{cep}/get
 //
 // Exemplo de uso:
 // ```

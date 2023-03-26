@@ -1,7 +1,7 @@
 module v2
 
 pub struct Location {
-	pub:
+pub:
 	@type       string
 	coordinates Coordinates
 }

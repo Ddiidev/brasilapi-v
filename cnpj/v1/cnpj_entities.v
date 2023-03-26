@@ -1,7 +1,7 @@
 module v1
 
 pub struct Cnpj {
-	pub:
+pub:
 	uf  string
 	cep string
 	qsa []Qsa // Pode conter dados ou não

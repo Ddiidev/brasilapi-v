@@ -2,7 +2,7 @@ module v1
 
 // Quadro de Sócios e Administradores da empresa.
 pub struct Qsa {
-	pub:
+pub:
 	pais                                    string
 	nome_socio                              string
 	codigo_pais                             int

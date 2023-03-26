@@ -5,7 +5,6 @@ import cnpj.errors
 
 fn test_cnpj_valid() {
 	cnpj_code := '34925681000110'
-	
 
 	if cnpj_code_ := cnpj.get_cnpj(cnpj_code) {
 		dump(cnpj_code_.razao_social)
