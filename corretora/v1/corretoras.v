@@ -27,7 +27,13 @@ pub fn get_all_corretoras() ![]Corretora {
 		message: err.msg()
 	} }
 
-	return json.decode([]Corretora, resp.body)
+	mut js := json.decode([]Corretora_temp, resp.body) or {
+		return CorretoraError{
+			message: err.msg()
+		}
+	}
+
+	return js.get_corretoras()
 }
 
 // get_corretora_by_cnpj Retorna informações referentes a um corretora ativa listada na CVM apartir do cnpj.
@@ -62,7 +68,11 @@ pub fn get_corretora_by_cnpj(cnpj_code_ string) !Corretora {
 		}
 	}
 
-	return json.decode(Corretora, resp.body) or { return CorretoraError{
-		message: err.msg()
-	} }
+	mut js := json.decode(Corretora_temp, resp.body) or {
+		return CorretoraError{
+			message: err.msg()
+		}
+	}
+
+	return js.get_corretora()
 }

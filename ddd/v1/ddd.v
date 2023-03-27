@@ -30,14 +30,14 @@ pub fn get_ddd(ddd string) !Ddd {
 	} }
 
 	if resp.status_code in [404, 500] {
-		return json.decode(errors.DddError, resp.body) or { return errors.DddError{
-			message: err.msg()
-		} }
-	} else {
-		return json.decode(Ddd, resp.body) or {
+		return json.decode(errors.DddError, resp.body) or {
 			return errors.DddError{
 				message: err.msg()
 			}
 		}
+	} else {
+		return json.decode(Ddd, resp.body) or { return errors.DddError{
+			message: err.msg()
+		} }
 	}
 }

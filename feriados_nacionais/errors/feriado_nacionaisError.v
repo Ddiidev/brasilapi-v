@@ -2,7 +2,7 @@ module errors
 
 pub struct FeriadosNacionaisError {
 	Error
-	pub:
+pub:
 	message string
 	@type   string
 	name    string
