@@ -19,7 +19,12 @@ on:
 jobs:
 
   fmt-check:
-    runs-on: ubuntu-18-04
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os:
+          - ubuntu-18.04
 
     steps:
       - name: Setup V
