@@ -48,22 +48,19 @@ jobs:
           v install ldedev.brasilapi
 
       - name: Move brasilapi source code to path start
-        run: mv ~/.vmodules/ldedev/brasilapi ~/brasilapi
+        run: mv ~/.vmodules/ldedev/brasilapi /brasilapi
 
       - name: Construct doc
-        run: v doc -comments -readme -f html -all -m ~/brasilapi
+        run: v doc -comments -readme -f html -all -m /brasilapi
 
       - name: Setup Pages
         uses: actions/configure-pages@v3
-
-      - name: test
-        run: cd ~/brasilapi/_docs
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload entire repository
-          path: '.'
+          path: '/brasilapi/_docs'
 
       - name: Deploy to GitHub Pages
         id: deployment
