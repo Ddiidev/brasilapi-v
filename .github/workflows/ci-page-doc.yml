@@ -56,6 +56,9 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v3
 
+      - name: test
+        run: ls
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
