@@ -48,7 +48,7 @@ jobs:
           v install ldedev.brasilapi
 
       - name: Move brasilapi source code to path start
-        run: mv ~/.vmodules/ldedev/brasilapi /brasilapi
+        run: sudo mv ~/.vmodules/ldedev/brasilapi /brasilapi
 
       - name: Construct doc
         run: v doc -comments -readme -f html -all -m /brasilapi
