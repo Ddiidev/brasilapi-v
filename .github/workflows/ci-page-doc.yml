@@ -49,20 +49,20 @@ jobs:
       - name: Verify Fmt
         run: v doc -comments -readme -f html -all -m ~/brasilapi
 
-    # Single deploy job since we're just deploying
-    deploy:
-      environment:
-        name: github-pages
-        url: ${{ steps.deployment.outputs.page_url }}
-      runs-on: ubuntu-latest
-      steps:
-        - name: Setup Pages
-          uses: actions/configure-pages@v3
-        - name: Upload artifact
-          uses: actions/upload-pages-artifact@v1
-          with:
-            # Upload entire repository
-            path: '_docs'
-        - name: Deploy to GitHub Pages
-          id: deployment
-          uses: actions/deploy-pages@v2
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          # Upload entire repository
+          path: '_docs'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
