@@ -50,7 +50,7 @@ jobs:
       - name: Move brasilapi source code to path start
         run: mv ~/.vmodules/ldedev/brasilapi ~/brasilapi
 
-      - name: Verify Fmt
+      - name: Construct doc
         run: v doc -comments -readme -f html -all -m ~/brasilapi
 
       - name: Setup Pages
@@ -60,8 +60,8 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload entire repository
-          path: '_docs'
-          
+          path: '~/brasilapi/_docs'
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
