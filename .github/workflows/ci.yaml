@@ -1,0 +1,62 @@
+name: brasilapi-v Continuous Integration
+
+concurrency:
+  group: ci-${{ github.event.number }}
+  cancel-in-progress: true
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+  push:
+    branches:
+      - master
+
+  pull_request:
+    branches:
+      - master
+
+jobs:
+
+  fmt-check:
+    runs-on: ubuntu-18-04
+
+    steps:
+      - name: Setup V
+        uses: vlang/setup-v@v1
+        with:
+          check-latest: true
+
+      - name: V doctor
+        run: v doctor
+
+      - name: Install brasilapi
+        run: |
+          v install ldedev.brasilapi
+
+      - name: Verify Fmt
+        run: v fmt -verify ~/.vmodules/ldedev/brasilapi
+
+  run-tests:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os:
+          - ubuntu-18.04
+
+    steps:
+      - name: Setup V
+        uses: vlang/setup-v@v1
+        with:
+          check-latest: true
+
+      - name: V doctor
+        run: v doctor
+
+      - name: Install brasilapi
+        run: |
+          v install ldedev.brasilapi
+
+      - name: Execute Tests using Pure V Backend
+        run: v -stats test ~/.vmodules/ldedev/brasilapi

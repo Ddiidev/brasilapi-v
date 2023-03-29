@@ -3,7 +3,7 @@ module v1
 import net.http
 import json
 import cnpj.errors
-import utils
+import cnpj { CNPJ }
 
 const uri = 'https://brasilapi.com.br/api/cnpj/v1'
 
@@ -22,8 +22,8 @@ const uri = 'https://brasilapi.com.br/api/cnpj/v1'
 // ```
 //
 // Caso CNPJ não seja encontrado, então irá ser retornado um objeto de erro "errors.CnpjError"
-pub fn get_cnpj(cnpj_code_ string) !Cnpj {
-	mut cnpj_code := utils.adjust_string_cnpj(cnpj_code_)
+pub fn get_cnpj(cnpj_code_ CNPJ) !Cnpj {
+	mut cnpj_code := cnpj_code_.remove_format_cnpj()
 
 	resp := http.get('${v1.uri}/${cnpj_code}') or {
 		return errors.CnpjError{

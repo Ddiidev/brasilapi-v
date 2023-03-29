@@ -3,7 +3,7 @@ module v1
 import net.http
 import json
 import corretora.errors { CorretoraError }
-import utils
+import cnpj { CNPJ }
 
 // https://brasilapi.com.br/docs#tag/Corretoras/
 const uri = 'https://brasilapi.com.br/api/cvm/corretoras/v1'
@@ -53,8 +53,8 @@ pub fn get_all_corretoras() ![]Corretora {
 // ```
 //
 // Caso não seja encontrado o cnpj, irá retornar um errors.CorretoraError
-pub fn get_corretora_by_cnpj(cnpj_code_ string) !Corretora {
-	mut cnpj_code := utils.adjust_string_cnpj(cnpj_code_)
+pub fn get_corretora_by_cnpj(cnpj_code_ CNPJ) !Corretora {
+	mut cnpj_code := cnpj_code_.remove_format_cnpj()
 
 	resp := http.get('${v1.uri}/${cnpj_code}') or { return CorretoraError{
 		message: err.msg()

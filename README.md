@@ -15,7 +15,7 @@ Uma [lib](https://crates.io/crates/brasilapi) para a API do [BrasilAPI](https://
 # Features
 - [x] **CEP (Zip code)**
 - [X] **DDD**
-- [ ] **Bank**
+- [X] **Bank**
 - [x] **Corretoras**
 - [x] **CNPJ**
 - [X] **Feriados Nacionais**
@@ -35,8 +35,8 @@ Veja [CONTRIBUTING.md](./CONTRIBUTING.md) para ver como contribuir com o projeto
 # Autor
 <div align="center">
 
-| [<img src="https://avatars.githubusercontent.com/u/7676415?v=4?size=115" width=115><br><sub>@ldedev</sub>](https://github.com/ldedev) |
-|:---------------------------------------------------------------------------------------------------------------------------------------:|
+| [<img width="80" height="80" src="https://avatars.githubusercontent.com/u/7676415?v=4?size=32" width=115><br><sub>@ldedev</sub>](https://github.com/ldedev) |
+|:---------------------------------------------------------------------------------------------------------------------------------------------------------:|
 
 
 </div>
