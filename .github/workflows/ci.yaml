@@ -40,10 +40,10 @@ jobs:
           v install ldedev.brasilapi
 
       - name: Move brasilapi source code to V Modules
-        run: mv ~/.vmodules/ldedev/brasilapi ~/.vmodules/brasilapi
+        run: mv ~/.vmodules/ldedev/brasilapi ~/brasilapi
 
       - name: Verify Fmt
-        run: v fmt -verify ~/.vmodules/brasilapi
+        run: v fmt -verify ~/brasilapi
 
   run-tests:
     runs-on: ${{ matrix.os }}
@@ -67,7 +67,7 @@ jobs:
           v install ldedev.brasilapi
 
       - name: Move brasilapi source code to V Modules
-        run: mv ~/.vmodules/ldedev/brasilapi ~/.vmodules/brasilapi
+        run: mv ~/.vmodules/ldedev/brasilapi ~/brasilapi
 
       - name: Execute Tests using Pure V Backend
-        run: v -stats test ~/.vmodules/brasilapi
+        run: v -stats test ~/brasilapi
