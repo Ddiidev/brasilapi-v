@@ -19,12 +19,7 @@ on:
 jobs:
 
   fmt-check:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os:
-          - ubuntu-18.04
+    runs-on: ubuntu-18-04
 
     steps:
       - name: Setup V
@@ -39,8 +34,11 @@ jobs:
         run: |
           v install ldedev.brasilapi
 
+      - name: Move brasilapi source code to V Modules
+        run: mv ~/.vmodules/ldedev/brasilapi ~/.vmodules/brasilapi
+
       - name: Verify Fmt
-        run: v fmt -verify ~/.vmodules/ldedev/brasilapi
+        run: v fmt -verify ~/.vmodules/brasilapi
 
   run-tests:
     runs-on: ${{ matrix.os }}
@@ -63,5 +61,8 @@ jobs:
         run: |
           v install ldedev.brasilapi
 
+      - name: Move brasilapi source code to V Modules
+        run: mv ~/.vmodules/ldedev/brasilapi ~/.vmodules/brasilapi
+
       - name: Execute Tests using Pure V Backend
-        run: v -stats test ~/.vmodules/ldedev/brasilapi
+        run: v -stats test ~/.vmodules/brasilapi
