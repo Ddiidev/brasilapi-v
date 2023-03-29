@@ -16,4 +16,4 @@ Agora é só esperar a análise do seu código e aguardar a aprovação do seu p
 
 # Algumas resalvas
 - Toda feature deve ter documentação e testes unitários.
-- Sempre que finalizar a codificação rodoar `v doc -comments -readme -f html -all -m .` para gerar a documentação automática.
+- Toda documentação é gerada automáticamente pipeline, certifique-se de rodar `v fmt -w .` antes de subir.
