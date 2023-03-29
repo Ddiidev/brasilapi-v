@@ -57,13 +57,13 @@ jobs:
         uses: actions/configure-pages@v3
 
       - name: test
-        run: ls
+        run: cd ~/brasilapi/_docs
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload entire repository
-          path: '~/brasilapi/_docs'
+          path: '.'
 
       - name: Deploy to GitHub Pages
         id: deployment
