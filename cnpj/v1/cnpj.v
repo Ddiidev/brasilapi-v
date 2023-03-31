@@ -7,14 +7,14 @@ import cnpj { CNPJ }
 
 const uri = 'https://brasilapi.com.br/api/cnpj/v1'
 
-// get_cnpj Retorna os dados do CNPJ(Cadastro Nacional da Pessoa Jurídica)
+// get Retorna os dados do CNPJ(Cadastro Nacional da Pessoa Jurídica)
 //
 // https://brasilapi.com.br/docs#tag/CNPJ
 //
 // Exemplo de uso:
 // ```
-// if cnpj_ := cnpj.get_cnpj('34925681000110') {
-// 	dump(cnpj_)
+// if cnpj_ := cnpj_.get_cnpj('34925681000110') {
+// 	dump(cnpj)
 // } else {
 // 	// print message error
 // 	println(err)
@@ -22,7 +22,7 @@ const uri = 'https://brasilapi.com.br/api/cnpj/v1'
 // ```
 //
 // Caso CNPJ não seja encontrado, então irá ser retornado um objeto de erro "errors.CnpjError"
-pub fn get_cnpj(cnpj_code_ CNPJ) !Cnpj {
+pub fn get(cnpj_code_ CNPJ) !Cnpj {
 	mut cnpj_code := cnpj_code_.remove_format_cnpj()
 
 	resp := http.get('${v1.uri}/${cnpj_code}') or {

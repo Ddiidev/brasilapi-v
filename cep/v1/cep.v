@@ -7,13 +7,13 @@ import cep.errors
 // https://brasilapi.com.br/docs#tag/CEP
 const uri = 'https://brasilapi.com.br/api/cep/v1'
 
-// get_cep Retorna os dados do CEP(Código de Endereçamento Postal).
+// get Retorna os dados do CEP(Código de Endereçamento Postal).
 // https://brasilapi.com.br/docs#tag/CEP/paths/~1cep~1v1~1{cep}/get
 //
 // Exemplo de uso:
 // ```
-// if cep_ := cep.get_cep('63900-193') {
-// 	dump(cep_)
+// if cep := cep_.get_cep('63900-193') {
+// 	dump(cep)
 // } else {
 // 	// print message error
 // 	println(err)
@@ -21,7 +21,7 @@ const uri = 'https://brasilapi.com.br/api/cep/v1'
 // ```
 //
 // Caso não seja encontrado o cep, irá retornar um errors.CepError
-pub fn get_cep(cep_code string) !Cep {
+pub fn get(cep_code string) !Cep {
 	resp := http.get('${v1.uri}/${cep_code}') or { return errors.CepError{
 		message: err.msg()
 	} }

@@ -8,7 +8,19 @@ import time
 // https://brasilapi.com.br/docs#tag/Feriados-Nacionais
 const uri = 'https://brasilapi.com.br/api/feriados/v1/'
 
-pub fn get_feriados_nacionais(year string) ![]FeriadoNacional {
+// get_all Retorna todos os Feriados nacionais
+//
+// https://brasilapi.com.br/docs#tag/Feriados-Nacionais/paths/~1feriados~1v1~1{ano}/get
+//
+// Exemplo de uso:
+// ```v
+// if feriados := feriados_.get_all() {
+//  dump(feriados)
+// } else {
+//  println(err.msg())
+// }
+// ```
+pub fn get_all(year string) ![]FeriadoNacional {
 	resp := http.get('${v1.uri}/${year}') or {
 		return errors.FeriadosNacionaisError{
 			message: err.msg()

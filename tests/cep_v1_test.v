@@ -5,7 +5,7 @@ import cep.errors
 
 fn test_cep_code_valid() ! {
 	cep_code := '58063520'
-	cep_ := cep.get_cep(cep_code)!
+	cep_ := cep.get(cep_code)!
 
 	assert cep_.cep == cep_code
 	assert cep_.state == 'PB'
@@ -14,7 +14,7 @@ fn test_cep_code_valid() ! {
 
 fn test_cep_code_invalid_number() ! {
 	cep_code := '00063520'
-	if cep_ := cep.get_cep(cep_code) {
+	if cep_ := cep.get(cep_code) {
 		// Caso tenha encontrado algo, o que enquadraria em um erro
 		// visto que o cep é inválido.
 		assert false
@@ -25,7 +25,7 @@ fn test_cep_code_invalid_number() ! {
 
 fn test_cep_code_invalid_empty() ! {
 	cep_code := ''
-	if cep_ := cep.get_cep(cep_code) {
+	if cep_ := cep.get(cep_code) {
 		// Caso tenha encontrado algo, o que enquadraria em um erro
 		// visto que o cep é inválido.
 		assert false
@@ -36,7 +36,7 @@ fn test_cep_code_invalid_empty() ! {
 
 fn test_object_error_when_zip_code_is_invalid() ! {
 	cep_code := '00063520'
-	if cep_ := cep.get_cep(cep_code) {
+	if cep_ := cep.get(cep_code) {
 		assert false
 	} else {
 		if err is errors.CepError {

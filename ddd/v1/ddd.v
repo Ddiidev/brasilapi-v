@@ -7,24 +7,24 @@ import json
 // https://brasilapi.com.br/docs#tag/DDD
 const uri = 'https://brasilapi.com.br/api/ddd/v1/'
 
-// get_ddd Retorna estado e lista de cidades por DDD
+// get Retorna estado e lista de cidades por DDD
 //
 // https://brasilapi.com.br/docs#tag/DDD/paths/~1ddd~1v1~1{ddd}/get
 //
 // Exemplo de uso:
-// ```
-// if ddd_ := get_ddd("83") {
-//  dump(ddd_)
+// ```v
+// if ddd := ddd_.get_ddd("83") {
+//  dump(ddd)
 // } else {
 //  println(err.msg())
 //
 //  // For more details about the error
-//  // if err is ddd.errors.DddError {
+//  // if err is ddd_.errors.DddError {
 //  //     dump(err)
 //  // }
 // }
 // ```
-pub fn get_ddd(ddd string) !Ddd {
+pub fn get(ddd string) !Ddd {
 	resp := http.get('${v1.uri}/${ddd}') or { return errors.DddError{
 		message: err.msg()
 	} }
