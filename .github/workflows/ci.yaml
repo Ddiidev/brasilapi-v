@@ -1,4 +1,4 @@
-name: brasilapi-v Continuous Integration
+name: brasilapi-v quality code CI
 
 concurrency:
   group: ci-${{ github.event.number }}
