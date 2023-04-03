@@ -17,7 +17,8 @@ fn test_get_corretora_by_cnpj() {
 	cnpj_code := '24159923000159'
 
 	if corretora := corretora_.get_by_cnpj(cnpj_code) {
-		assert corretora.cnpj == cnpj_code && corretora.@type == 'CORRETORAS' && corretora.valor_patrimonio_liquido > 0
+		assert corretora.cnpj == cnpj_code && corretora.@type == 'CORRETORAS'
+			&& corretora.valor_patrimonio_liquido > 0
 	} else {
 		if err is errors.CorretoraError {
 			assert false
