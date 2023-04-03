@@ -2,6 +2,6 @@ module v1
 
 pub struct FipeMarcas {
 pub:
-	nome string
+	nome  string
 	valor i64
 }

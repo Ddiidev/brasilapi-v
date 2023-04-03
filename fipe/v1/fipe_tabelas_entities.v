@@ -6,5 +6,5 @@ module v1
 pub struct FipeTabelaReferencia {
 pub:
 	codigo int
-	mes string
+	mes    string
 }
