@@ -43,6 +43,7 @@ fn test_get_marcas_valid() {
 	}
 }
 
+
 [assert_continues]
 fn test_object_error_when_data_invalid() {
 	tabela_referencia := 0
@@ -52,7 +53,6 @@ fn test_object_error_when_data_invalid() {
 		assert false
 	} else {
 		if err is errors.FipeError {
-			assert true
 			assert err.@type == 'bad_request'
 				&& ['Tabela', 'inválida'].all(err.message.contains(it))
 		} else {

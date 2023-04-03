@@ -18,7 +18,7 @@ const uri_tabelas_referencia = 'https://brasilapi.com.br/api/fipe/tabelas/v1'
 pub struct ParamMarcas {
 pub:
 	tipo_veiculo      TiposVeiculo [required]
-	tabela_referencia ?i64
+	tabela_referencia ?i32
 }
 
 // Parâmetros para a função get_precos
@@ -26,7 +26,7 @@ pub:
 pub struct ParamPrecos {
 pub:
 	codigo_fipe       string [required]
-	tabela_referencia ?i64
+	tabela_referencia ?i32
 }
 
 // get_marcas Lista as marcas de veículos referente ao tipo de veículo
@@ -47,7 +47,7 @@ pub:
 pub fn get_marcas(params ParamMarcas) ![]FipeMarcas {
 	uri := match params.tabela_referencia {
 		none { '${v1.uri_marcas}/${params.tipo_veiculo.str()}' }
-		else { '${v1.uri_marcas}/${params.tipo_veiculo.str()}?tabela_refencia=${params.tabela_referencia?}' }
+		else { '${v1.uri_marcas}/${params.tipo_veiculo.str()}?tabela_referencia=${params.tabela_referencia?}' }
 	}
 
 	println(uri)
@@ -87,7 +87,7 @@ pub fn get_precos(params ParamPrecos) ![]FipeVeiculo {
 			'${v1.uri_precos}/${params.codigo_fipe}'
 		}
 		else {
-			'${v1.uri_precos}/${params.codigo_fipe}?tabela_refencia=${params.tabela_referencia?}'
+			'${v1.uri_precos}/${params.codigo_fipe}?tabela_referencia=${params.tabela_referencia?}'
 		}
 	}
 
