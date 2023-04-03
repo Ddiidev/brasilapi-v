@@ -70,7 +70,7 @@ pub fn (c Corretora_temp) get_corretora() Corretora {
 		bairro: c.bairro
 		complemento: c.complemento
 		logradouro: c.logradouro
-		valor_patrimonio_liquido: c.valor_patrimonio_liquido
+		valor_patrimonio_liquido: c.valor_patrimonio_liquido.f64()
 		codigo_cvm: c.codigo_cvm
 		data_patrimonio_liquido: time.parse('${c.data_patrimonio_liquido} 00:00:00.000') or {
 			time.now()
