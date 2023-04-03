@@ -19,12 +19,7 @@ on:
 jobs:
 
   fmt-check:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os:
-          - ubuntu-lastest
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Setup V
@@ -46,12 +41,7 @@ jobs:
         run: v fmt -verify ~/brasilapi
 
   run-tests:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os:
-          - ubuntu-lastest
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Setup V

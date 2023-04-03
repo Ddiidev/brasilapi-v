@@ -23,12 +23,7 @@ concurrency:
 
 jobs:
   create-doc:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os:
-          - ubuntu-lastest
+    runs-on: ubuntu-22.04
 
     environment:
       name: github-pages
