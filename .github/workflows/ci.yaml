@@ -23,7 +23,7 @@ jobs:
 
     steps:
       - name: Setup V
-        uses: vlang/setup-v@v1.3
+        uses: vlang/setup-v@v1
         with:
           check-latest: true
 
@@ -45,7 +45,7 @@ jobs:
 
     steps:
       - name: Setup V
-        uses: vlang/setup-v@v1.3
+        uses: vlang/setup-v@v1
         with:
           check-latest: true
 
