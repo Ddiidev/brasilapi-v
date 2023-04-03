@@ -43,8 +43,6 @@ fn test_get_marcas_valid() {
 	}
 }
 
-
-// [assert_continues]
 fn test_object_error_when_data_invalid() {
 	tabela_referencia := 0
 	tipo_veiculo := fipe_.TiposVeiculo.motos
