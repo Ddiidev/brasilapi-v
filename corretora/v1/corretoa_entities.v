@@ -19,7 +19,7 @@ pub:
 	complemento              string
 	logradouro               string
 	data_patrimonio_liquido  time.Time
-	valor_patrimonio_liquido string
+	valor_patrimonio_liquido f64
 	codigo_cvm               string
 	data_inicio_situacao     time.Time
 	data_registro            time.Time
