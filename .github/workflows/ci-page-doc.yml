@@ -23,12 +23,7 @@ concurrency:
 
 jobs:
   create-doc:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os:
-          - ubuntu-18.04
+    runs-on: ubuntu-22.04
 
     environment:
       name: github-pages
@@ -36,7 +31,7 @@ jobs:
 
     steps:
       - name: Setup V
-        uses: vlang/setup-v@v1
+        uses: vlang/setup-v@v1.3
         with:
           check-latest: true
 

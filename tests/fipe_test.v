@@ -48,6 +48,7 @@ fn test_object_error_when_data_invalid() {
 	tipo_veiculo := fipe_.TiposVeiculo.motos
 
 	if marcas := fipe_.get_marcas(tipo_veiculo: tipo_veiculo, tabela_referencia: tabela_referencia) {
+		// dump(marcas)
 		assert false
 	} else {
 		if err is errors.FipeError {

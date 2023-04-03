@@ -19,16 +19,11 @@ on:
 jobs:
 
   fmt-check:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os:
-          - ubuntu-18.04
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Setup V
-        uses: vlang/setup-v@v1
+        uses: vlang/setup-v@v1.3
         with:
           check-latest: true
 
@@ -46,16 +41,11 @@ jobs:
         run: v fmt -verify ~/brasilapi
 
   run-tests:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os:
-          - ubuntu-18.04
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Setup V
-        uses: vlang/setup-v@v1
+        uses: vlang/setup-v@v1.3
         with:
           check-latest: true
 
