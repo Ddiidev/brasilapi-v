@@ -22,7 +22,7 @@ fn test_get_precos_veiculos_when_codigo_fipe_invalid() {
 }
 
 fn test_get_precos_veiculos_when_codigo_fipe_valid() {
-	tabela_referencia := 295
+	tabela_referencia := 294
 	codigo_fipe := '038003-2'
 
 	if precos := fipe_.get_precos(codigo_fipe: codigo_fipe, tabela_referencia: tabela_referencia) {
@@ -48,7 +48,6 @@ fn test_object_error_when_data_invalid() {
 	tipo_veiculo := fipe_.TiposVeiculo.motos
 
 	if marcas := fipe_.get_marcas(tipo_veiculo: tipo_veiculo, tabela_referencia: tabela_referencia) {
-		// dump(marcas)
 		assert false
 	} else {
 		if err is errors.FipeError {

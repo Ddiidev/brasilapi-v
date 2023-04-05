@@ -50,7 +50,6 @@ pub fn get_marcas(params ParamMarcas) ![]FipeMarcas {
 		else { '${v1.uri_marcas}/${params.tipo_veiculo.str()}?tabela_referencia=${params.tabela_referencia?}' }
 	}
 
-	println(uri)
 	resp := http.get(uri) or { return FipeError{
 		message: err.msg()
 	} }
