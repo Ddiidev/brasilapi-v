@@ -10,7 +10,7 @@
 
 </div>
 
-Uma [lib](https://vpm.vlang.io/mod/ldedev.brasilapi) para a API do [BrasilAPI](https://github.com/BrasilAPI/BrasilAPI) (para o V)
+Uma [lib](https://vpm.vlang.io/mod/ldedev.brasilapi) para a API do [BrasilAPI](https://github.com/BrasilAPI/BrasilAPI) (para o [V](https://vlang.io/))
 
 ### É possível encontrar toda a documentação desse client/sdk na [doc](https://ldedev.github.io/brasilapi-v/).
 
