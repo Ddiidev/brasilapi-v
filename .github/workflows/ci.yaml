@@ -60,4 +60,4 @@ jobs:
         run: mv ~/.vmodules/ldedev/brasilapi ~/brasilapi
 
       - name: Execute Tests using Pure V Backend
-        run: v -stats test ~/brasilapi
+        run: v -cc tcc -stats test ~/brasilapi
