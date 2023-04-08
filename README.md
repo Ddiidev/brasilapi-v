@@ -24,7 +24,7 @@ Uma [lib](https://vpm.vlang.io/mod/ldedev.brasilapi) para a API do [BrasilAPI](h
 - [X] **Corretoras**
 - [X] **CNPJ**
 - [X] **Feriados Nacionais**
-- [ ] **Registros de domínios br**
+- [X] **Registros de domínios br**
 - [ ] **IBGE**
 - [ ] **Tabela FIPE**
 - [ ] **ISBN**
