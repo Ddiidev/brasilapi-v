@@ -13,7 +13,7 @@ const uri = 'https://brasilapi.com.br/api/registrobr/v1'
 //
 // Exemplos de uso:
 // ```v
-// if status_domain := registro_br.get('brasilapi.com.br') {
+// if status_domain := registro_br.domain_registered('brasilapi.com.br') {
 // 	dump(status_domain)
 // } else {
 // 	println(err)
