@@ -6,6 +6,7 @@ import ibge.errors
 fn test_retorno_unidades_federativas() {
 	if municipios := ibge.get_municipios(uf: 'PB', providers: .wikipedia | .gov) {
 		assert municipios.len > 0
+		assert !municipios[0].nome.is_blank() && !municipios[0].codigo_ibge.is_blank()
 	} else {
 		assert false
 	}
