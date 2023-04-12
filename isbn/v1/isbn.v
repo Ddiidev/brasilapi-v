@@ -15,8 +15,22 @@ pub:
 }
 
 // get Informações sobre o livro a partir do ISBN
+// Caso o provider não seja especificado o padrão é todos os provedores disponíveis.
+// <br/>
+// https://brasilapi.com.br/docs#tag/ISBN/paths/~1isbn~1v1~1%7Bisbn%7D/get
 //
+// Exemplo de uso:
 //
+// ```v
+// // get(isbn: '9788532530831', provider: Provider.cbl | .mercado_editorial) {
+// if book := isbn.get(isbn: '9788532530831') {
+// 	println(book)
+// } else {
+// 	println(err)
+// }
+// ```
+//
+// Caso ocorra algum erro, o retorno será um objeto do tipo `IsbnError`
 pub fn get(param ParamGet) !ISBN {
 	isbn := param.isbn
 	if isbn.len != 10 && isbn.len != 13 {
