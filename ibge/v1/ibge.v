@@ -36,7 +36,6 @@ pub fn get_municipios(param ParamsGet) ![]IBGE {
 	providers := param.providers.get_names_setad()
 	uri := '${v1.uri_municipios}/${param.uf}?providers=${providers.join(',')}'
 
-	dump(uri)
 	resp := http.get(uri) or { return IBGEError{
 		message: err.msg()
 	} }
