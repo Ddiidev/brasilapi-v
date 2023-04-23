@@ -27,11 +27,9 @@ pub fn get() ![]Taxa {
 	} }
 
 	if resp.status_code != 200 {
-		return json.decode(TaxaError, resp.body) or {
-			return TaxaError{
-				message: err.msg()
-			}
-		}
+		return json.decode(TaxaError, resp.body) or { return TaxaError{
+			message: err.msg()
+		} }
 	}
 
 	return json.decode([]Taxa, resp.body) or { return TaxaError{
