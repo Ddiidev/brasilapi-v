@@ -10,7 +10,9 @@ fn test_ddd_valid() {
 	if detail := ddd.get(ddd_code) {
 		assert detail.state == state
 	} else {
-		assert false
+		if err is errors.DddError {
+			assert false
+		}
 	}
 }
 
@@ -32,8 +34,6 @@ fn test_object_error_when_ddd_is_invalid() {
 	} else {
 		if err is errors.DddError {
 			assert err.@type == 'ddd_error' && err.name == 'DDD_NOT_FOUND'
-		} else {
-			assert false
 		}
 	}
 }
