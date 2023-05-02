@@ -31,7 +31,7 @@ Uma [lib](https://vpm.vlang.io/mod/ldedev.brasilapi) para a API do [BrasilAPI](h
 - [X] **Taxas**
 - [ ] **PIX**
 - [ ] **NCM**
-- [ ] **CPTEC**
+- [X] **CPTEC**
 
 # Como contribuir
 
