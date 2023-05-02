@@ -2,6 +2,7 @@ module v1
 
 import json
 import net.http
+import net.urllib
 import cptec.errors { CptecError }
 
 // https://brasilapi.com.br/docs#operation/listcities(/cptec/v1/cidade)
@@ -14,6 +15,19 @@ const uri_clima_aeroporto = 'https://brasilapi.com.br/api/cptec/v1/clima/aeropor
 const uri_previsao_cidade = 'https://brasilapi.com.br/api/cptec/v1/clima/previsao'
 
 const uri_previsao_oceanica_cidade = 'https://brasilapi.com.br/api/cptec/v1/ondas/'
+
+[params]
+pub struct ParamCidades {
+pub:
+	city_name ?string
+}
+
+[params]
+pub struct ParamPrevisaoCidade {
+pub:
+	city_code int
+	days      i16 = 1
+}
 
 // cidades Retorna listagem com todas as cidades junto a seus respectivos códigos presentes nos serviços da CPTEC
 //
@@ -29,10 +43,15 @@ const uri_previsao_oceanica_cidade = 'https://brasilapi.com.br/api/cptec/v1/onda
 // ```
 //
 // Caso ocorra alguma falha irá retornar um errors.CptecError
-pub fn cidades(params struct { city_name ?string }) ![]Cidade {
+pub fn cidades(params ParamCidades) ![]Cidade {
 	uri := match params.city_name {
-		none { v1.uri_cidade }
-		else { '${v1.uri_cidade}/${params.city_name}' }
+		none {
+			v1.uri_cidade
+		}
+		else {
+			city_name := urllib.path_escape(params.city_name?.str())
+			'${v1.uri_cidade}/${city_name}'
+		}
 	}
 
 	resp := http.get(uri) or { return CptecError{
@@ -90,15 +109,15 @@ pub fn clima_capital() ![]Capital {
 //
 // Exemplo de uso:
 // ```v
-// if climas := cptec.clima_aeroporto() {
-//  dump(climas)
+// if clima := cptec.clima_aeroporto() {
+//  dump(clima)
 // } else {
 //  println(err) //print message error
 // }
 // ```
 //
 // Caso ocorra alguma falha irá retornar um errors.CptecError
-pub fn clima_aeroporto(icao_code string) ![]Capital {
+pub fn clima_aeroporto(icao_code string) !Capital {
 	resp := http.get('${v1.uri_clima_aeroporto}/${icao_code}') or {
 		return CptecError{
 			message: err.msg()
@@ -113,41 +132,7 @@ pub fn clima_aeroporto(icao_code string) ![]Capital {
 		}
 	}
 
-	return json.decode([]Capital, resp.body) or { return CptecError{
-		message: err.msg()
-	} }
-}
-
-// previsao_cidade Retorna Pervisão meteorológica para 1 dia na cidade informada.
-//
-// https://brasilapi.com.br/docs#operation/airportcurrentcondicao(/cptec/v1/clima/aeroporto/:icaoCode)
-//
-// Exemplo de uso:
-// ```v
-// if previsao := cptec.previsao_cidade() {
-//  dump(previsao)
-// } else {
-//  println(err) //print message error
-// }
-// ```
-//
-// Caso ocorra alguma falha irá retornar um errors.CptecError
-pub fn previsao_cidade(city_code int) !Previsiao {
-	resp := http.get('${v1.uri_previsao_cidade}/${city_code}') or {
-		return CptecError{
-			message: err.msg()
-		}
-	}
-
-	if resp.status_code != 200 {
-		return json.decode(CptecError, resp.body) or {
-			return CptecError{
-				message: err.msg()
-			}
-		}
-	}
-
-	return json.decode(Previsiao, resp.body) or { return CptecError{
+	return json.decode(Capital, resp.body) or { return CptecError{
 		message: err.msg()
 	} }
 }
@@ -166,7 +151,7 @@ pub fn previsao_cidade(city_code int) !Previsiao {
 // ```
 //
 // Caso ocorra alguma falha irá retornar um errors.CptecError
-pub fn previsao_cidade(params struct { city_code int days i16 = 1 }) !Previsiao {
+pub fn previsao_cidade(params ParamPrevisaoCidade) !Previsiao {
 	if params.days < 1 || params.days > 6 {
 		return CptecError{
 			message: 'O valor do parâmetro days deve ser entre 1 e 6'
@@ -206,7 +191,7 @@ pub fn previsao_cidade(params struct { city_code int days i16 = 1 }) !Previsiao 
 // ```
 //
 // Caso ocorra alguma falha irá retornar um errors.CptecError
-pub fn previsao_oceanica(params struct { city_code int days i16 = 1 }) !PrevisaOceanica {
+pub fn previsao_oceanica(params ParamPrevisaoCidade) !PrevisaOceanica {
 	if params.days < 1 || params.days > 6 {
 		return CptecError{
 			message: 'O valor do parâmetro days deve ser entre 1 e 6'
