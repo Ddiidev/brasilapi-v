@@ -29,6 +29,24 @@ pub struct ParamGet {
 // }
 // ```
 //
+// Retorna uma lista como todos os ncms que possua uma descrição parecida.
+// ```v
+// if ncms := ncm.get(search: 'refrigerante') {
+//  dump(ncms)
+// } else {
+//  println(err) //print message error
+// }
+// ```
+//
+// Retorna uma lista com um ncm especificado por código.
+// ```v
+// if ncm := ncm.get(code: '22021000') {
+//  dump(ncm.first())
+// } else {
+//  println(err) //print message error
+// }
+// ```
+//
 // Caso ocorra alguma falha irá retornar um errors.NcmError
 pub fn get(find ParamGet) ![]Ncm {
 	uri := if find.search != none {
