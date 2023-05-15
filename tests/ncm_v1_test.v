@@ -16,7 +16,7 @@ fn test_search_ncm() {
 
 	for name in names {
 		if ncms := ncm.get(search: name) {
-			assert ncms.first().descricao.contains(name)
+			assert ncms.first().descricao.to_lower().contains(name)
 		} else {
 			assert false, 'ncm(${name}) not found'
 		}
