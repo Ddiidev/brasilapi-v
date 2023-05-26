@@ -29,8 +29,8 @@ Uma [lib](https://vpm.vlang.io/mod/ldedev.brasilapi) para a API do [BrasilAPI](h
 - [X] **Tabela FIPE**
 - [X] **ISBN**
 - [X] **Taxas**
-- [ ] **PIX**
-- [ ] **NCM**
+- [X] **PIX**
+- [X] **NCM**
 - [X] **CPTEC**
 
 # Como contribuir

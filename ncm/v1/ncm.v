@@ -62,7 +62,9 @@ pub fn get(find ParamGet) ![]Ncm {
 		message: err.msg()
 	} }
 
-	if resp.status_code != 200 {
+	if resp.status_code == 504 {
+		return error('timeout')
+	} else if resp.status_code != 200 {
 		return json.decode(NcmError, resp.body) or { return NcmError{
 			message: err.msg()
 		} }

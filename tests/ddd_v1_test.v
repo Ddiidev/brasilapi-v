@@ -13,6 +13,7 @@ fn test_ddd_valid() {
 		if err is errors.DddError {
 			assert false
 		}
+		eprintln('error: ${err}')
 	}
 }
 
@@ -35,5 +36,6 @@ fn test_object_error_when_ddd_is_invalid() {
 		if err is errors.DddError {
 			assert err.@type == 'ddd_error' && err.name == 'DDD_NOT_FOUND'
 		}
+		eprintln('error: ${err}')
 	}
 }

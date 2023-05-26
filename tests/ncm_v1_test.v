@@ -7,7 +7,10 @@ fn test_get_all_ncm() {
 	if ncms := ncm.get() {
 		assert ncms.len > 0
 	} else {
-		assert false
+		if err is NcmError {
+			assert false
+		}
+		eprintln('error: ${err}')
 	}
 }
 
@@ -18,7 +21,10 @@ fn test_search_ncm() {
 		if ncms := ncm.get(search: name) {
 			assert ncms.first().descricao.to_lower().contains(name)
 		} else {
-			assert false, 'ncm(${name}) not found'
+			if err is NcmError {
+				assert false, 'ncm(${name}) not found'
+			}
+			eprintln('error: ${err}')
 		}
 	}
 }
@@ -30,7 +36,10 @@ fn test_get_ncm_by_code() {
 		if ncms := ncm.get(code: code) {
 			assert ncms.first().codigo.replace('.', '') == code, 'code ncm(${code}) not found'
 		} else {
-			assert false, 'code ncm(${code}) not found'
+			if err is NcmError {
+				assert false, 'code ncm(${code}) not found'
+			}
+			eprintln('error: ${err}')
 		}
 	}
 }
@@ -43,6 +52,7 @@ fn test_get_ncm_by_invalid_code() {
 		if err is NcmError {
 			assert err.@type == 'NCM_CODE_NOT_FOUND'
 		}
+		eprintln('error: ${err}')
 		return
 	}
 
