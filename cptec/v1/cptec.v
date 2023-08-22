@@ -49,7 +49,7 @@ pub fn cidades(params ParamCidades) ![]Cidade {
 			v1.uri_cidade
 		}
 		else {
-			city_name := urllib.path_escape(params.city_name?.str())
+			city_name := urllib.path_escape(params.city_name or { '' })
 			'${v1.uri_cidade}/${city_name}'
 		}
 	}

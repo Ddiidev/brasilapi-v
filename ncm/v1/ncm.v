@@ -50,10 +50,10 @@ pub struct ParamGet {
 // Caso ocorra alguma falha irá retornar um errors.NcmError
 pub fn get(find ParamGet) ![]Ncm {
 	uri := if find.search != none {
-		search := urllib.path_escape(find.search?.str())
+		search := urllib.path_escape(find.search or { '' })
 		'${v1.uri_ncm}?search=${search}'
 	} else if find.code != none {
-		'${v1.uri_ncm}/${find.code?.str()}'
+		'${v1.uri_ncm}/${find.code or { '' }}'
 	} else {
 		v1.uri_ncm
 	}

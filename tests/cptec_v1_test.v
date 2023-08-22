@@ -14,8 +14,8 @@ fn test_get_all_citys() {
 fn test_get_city_by_name() {
 	city_name := 'São Bento'
 
-	if cidade := cptec.cidades(city_name: city_name) {
-		assert cidade.len > 0
+	if cidades := cptec.cidades(city_name: city_name) {
+		assert cidades.len > 0
 	} else {
 		assert false
 	}
