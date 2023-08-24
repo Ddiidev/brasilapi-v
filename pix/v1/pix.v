@@ -38,5 +38,5 @@ pub fn get_participants() ![]Pix {
 		message: err.msg()
 	} }
 
-	return temp_pix.get_pix() or { [] }
+	return temp_pix.get_pixs() or { [] }
 }

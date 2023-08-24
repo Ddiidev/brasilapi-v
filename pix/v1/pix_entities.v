@@ -22,8 +22,8 @@ pub:
 	inicio_operacao         time.Time
 }
 
-pub fn (temp_pix []TempPix) get_pix() ![]Pix {
-	date_default := time.parse('1970-01-01 00:00:00.000')!
+pub fn (temp_pix []TempPix) get_pixs() ![]Pix {
+	date_default := time.Time{}
 
 	return temp_pix.map(fn [date_default] (t TempPix) Pix {
 		return Pix{
@@ -32,7 +32,7 @@ pub fn (temp_pix []TempPix) get_pix() ![]Pix {
 			nome_reduzido: t.nome_reduzido
 			modalidade_participacao: t.modalidade_participacao
 			tipo_participacao: t.tipo_participacao
-			inicio_operacao: time.parse('${t.inicio_operacao} 00:00:00.000') or { date_default }
+			inicio_operacao: time.parse_iso8601('${t.inicio_operacao}') or { date_default }
 		}
 	})
 }
