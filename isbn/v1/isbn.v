@@ -7,10 +7,10 @@ import isbn.errors { IsbnError }
 // Para referência https://brasilapi.com.br/docs#tag/ISBN/paths/~1isbn~1v1~1{isbn}/get
 const uri_isbn = 'https://brasilapi.com.br/api/isbn/v1'
 
-[params]
+@[params]
 pub struct ParamGet {
 pub:
-	isbn     string   [required]
+	isbn     string   @[required]
 	provider Provider = Provider.google_books | .cbl | .open_library | .mercado_editorial
 }
 

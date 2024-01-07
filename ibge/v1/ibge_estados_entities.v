@@ -2,7 +2,7 @@ module v1
 
 pub struct Estado {
 pub:
-	id     i32
+	id     int
 	sigla  string
 	nome   string
 	regiao ?Regiao
@@ -10,7 +10,7 @@ pub:
 
 pub struct Regiao {
 pub:
-	id    i32
+	id    int
 	sigla string
 	nome  string
 }

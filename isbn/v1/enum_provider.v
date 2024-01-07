@@ -2,7 +2,7 @@ module v1
 
 import utils
 
-[flag]
+@[flag]
 pub enum Provider {
 	cbl
 	mercado_editorial

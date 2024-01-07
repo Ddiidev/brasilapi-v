@@ -19,7 +19,7 @@ pub:
 	provider     Provider
 }
 
-[noinit]
+@[noinit]
 struct ISBN_ {
 pub:
 	isbn         string

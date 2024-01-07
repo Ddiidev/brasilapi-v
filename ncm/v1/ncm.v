@@ -8,7 +8,7 @@ import net.urllib
 // https://brasilapi.com.br/docs#tag/NCM
 const uri_ncm = 'https://brasilapi.com.br/api/ncm/v1'
 
-[params]
+@[params]
 pub struct ParamGet {
 	// search Busca pelo código NCM ou descrição.
 	search ?string

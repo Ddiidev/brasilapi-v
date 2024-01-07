@@ -1,9 +1,9 @@
 module utils
 
-[params]
+@[params]
 pub struct ParamGet_names_enum_setad[T] {
 pub:
-	type_enum   T            [required]
+	type_enum   T            @[required]
 	source_data map[T]string
 }
 

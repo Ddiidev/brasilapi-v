@@ -5,5 +5,5 @@ pub:
 	ispb      string
 	name      string
 	code      int
-	full_name string [json: 'fullName']
+	full_name string @[json: 'fullName']
 }

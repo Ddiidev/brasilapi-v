@@ -14,19 +14,19 @@ const uri_precos = 'https://brasilapi.com.br/api/fipe/preco/v1'
 const uri_tabelas_referencia = 'https://brasilapi.com.br/api/fipe/tabelas/v1'
 
 // Parâmetros para a função get_marcas
-[params]
+@[params]
 pub struct ParamMarcas {
 pub:
-	tipo_veiculo      TiposVeiculo [required]
-	tabela_referencia ?i32
+	tipo_veiculo      TiposVeiculo @[required]
+	tabela_referencia ?int
 }
 
 // Parâmetros para a função get_precos
-[params]
+@[params]
 pub struct ParamPrecos {
 pub:
-	codigo_fipe       string [required]
-	tabela_referencia ?i32
+	codigo_fipe       string @[required]
+	tabela_referencia ?int
 }
 
 // get_marcas Lista as marcas de veículos referente ao tipo de veículo

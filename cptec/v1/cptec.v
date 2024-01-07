@@ -16,13 +16,13 @@ const uri_previsao_cidade = 'https://brasilapi.com.br/api/cptec/v1/clima/previsa
 
 const uri_previsao_oceanica_cidade = 'https://brasilapi.com.br/api/cptec/v1/ondas/'
 
-[params]
+@[params]
 pub struct ParamCidades {
 pub:
 	city_name ?string
 }
 
-[params]
+@[params]
 pub struct ParamPrevisaoCidade {
 pub:
 	city_code int

@@ -10,11 +10,11 @@ const uri_municipios = 'https://brasilapi.com.br/api/ibge/municipios/v1'
 // Para referência https://brasilapi.com.br/docs#tag/IBGE/paths/~1ibge~1uf~1v1/get
 const uri_uf = 'https://brasilapi.com.br/api/ibge/uf/v1'
 
-[params]
+@[params]
 pub struct ParamsGet {
 pub:
-	uf        string    [required]
-	providers Providers [required]
+	uf        string    @[required]
+	providers Providers @[required]
 }
 
 // get_municipios Retorna os municípios da unidade federativa

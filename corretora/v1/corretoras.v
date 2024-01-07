@@ -27,6 +27,10 @@ pub fn get_all() ![]Corretora {
 		message: err.msg()
 	} }
 
+	if resp.status_code == 500 {
+		return error_with_code(resp.status_msg, resp.status_code)
+	}
+
 	mut js := json.decode([]Corretora_temp, resp.body) or {
 		return CorretoraError{
 			message: err.msg()

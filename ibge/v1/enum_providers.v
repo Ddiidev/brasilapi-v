@@ -1,6 +1,6 @@
 module v1
 
-[flag]
+@[flag]
 pub enum Providers {
 	dados_abertos_br
 	gov

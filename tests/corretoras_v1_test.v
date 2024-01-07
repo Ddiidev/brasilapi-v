@@ -8,7 +8,11 @@ fn test_get_all_corretoras() {
 		assert corretoras.len > 0
 	} else {
 		if err is errors.CorretoraError {
-			assert false
+			assert false, err.msg()
+		} else if err.code() == 500 {
+			assert true
+		} else {
+			assert false, err.msg()
 		}
 	}
 }
@@ -21,7 +25,7 @@ fn test_get_corretora_by_cnpj() {
 			&& corretora.valor_patrimonio_liquido > 0
 	} else {
 		if err is errors.CorretoraError {
-			assert false
+			assert false, 'Corretora não encontrada'
 		}
 	}
 }

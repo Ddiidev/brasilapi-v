@@ -2,7 +2,7 @@ module tests
 
 import utils
 
-[flag]
+@[flag]
 enum EnumTest {
 	name_x
 	name_y

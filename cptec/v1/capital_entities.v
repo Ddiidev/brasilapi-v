@@ -10,6 +10,6 @@ pub:
 	direcao_vento       int
 	umidade             int
 	condicao            string
-	condicao_desc       string [json: 'condicao_Desc']
+	condicao_desc       string @[json: 'condicao_Desc']
 	temp                int
 }
