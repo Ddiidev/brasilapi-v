@@ -10,9 +10,9 @@
 
 </div>
 
-Uma [lib](https://vpm.vlang.io/mod/ldedev.brasilapi) para a API do [BrasilAPI](https://github.com/BrasilAPI/BrasilAPI) (para o [V](https://vlang.io/))
+Uma [lib](https://vpm.vlang.io/mod/Ddiidev.brasilapi) para a API do [BrasilAPI](https://github.com/BrasilAPI/BrasilAPI) (para o [V](https://vlang.io/))
 
-### É possível encontrar toda a documentação desse client/sdk na [doc](https://ldedev.github.io/brasilapi-v/).
+### É possível encontrar toda a documentação desse client/sdk na [doc](https://Ddiidev.github.io/brasilapi-v/).
 
 <br/>
 
@@ -39,14 +39,14 @@ Veja [CONTRIBUTING.md](./CONTRIBUTING.md) para ver como contribuir com o projeto
 
 # Instalação
 
-`v install ldedev.brasilapi`
+`v install Ddiidev.brasilapi`
 
 <br/><br/>
 
 # Como usar
 
 ```v
-import ldedev.brasilapi.cep.v1 as cep
+import Ddiidev.brasilapi.cep.v1 as cep
 
 fn main() {
 	if cep_ := cep.get_cep('63900-193') {
@@ -74,8 +74,8 @@ Resultado:
 
 ## Capturando detalhes de erros
 ```v
-import ldedev.brasilapi.cep.v2 as cep
-import ldedev.brasilapi.cep.errors
+import Ddiidev.brasilapi.cep.v2 as cep
+import Ddiidev.brasilapi.cep.errors
 
 fn main() {
 	if cep_ := cep.get_cep('00000-000') {
@@ -123,7 +123,7 @@ Ou pode simplesmente usar `err.msg()`, isso vale pra todos os módulos.
 <div align="center">
 
 
-| [<img width="80" height="80" src="https://avatars.githubusercontent.com/u/7676415?v=4?size=32" width=115><br><sub>@ldedev</sub>](https://github.com/ldedev) |
+| [<img width="80" height="80" src="https://avatars.githubusercontent.com/u/7676415?v=4?size=32" width=115><br><sub>@Ddiidev</sub>](https://github.com/Ddiidev) |
 | :-----------------------------------------------------------------------------------------------------------------------------------------------------------: |
 
 </div>

@@ -32,10 +32,10 @@ jobs:
 
       - name: Install brasilapi
         run: |
-          v install ldedev.brasilapi
+          v install Ddiidev.brasilapi
 
       - name: Move brasilapi source code to path start
-        run: mv ~/.vmodules/ldedev/brasilapi ~/brasilapi
+        run: mv ~/.vmodules/ddiidev/brasilapi ~/brasilapi
 
       - name: Verify Fmt
         run: v fmt -verify ~/brasilapi
@@ -54,10 +54,10 @@ jobs:
 
       - name: Install brasilapi
         run: |
-          v install ldedev.brasilapi
+          v install Ddiidev.brasilapi
 
       - name: Move brasilapi source code to path start
-        run: mv ~/.vmodules/ldedev/brasilapi ~/brasilapi
+        run: mv ~/.vmodules/ddiidev/brasilapi ~/brasilapi
 
       - name: Execute Tests using Pure V Backend
         run: v -cc tcc -stats test ~/brasilapi

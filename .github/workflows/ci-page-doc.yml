@@ -40,10 +40,10 @@ jobs:
 
       - name: Install brasilapi
         run: |
-          v install ldedev.brasilapi
+          v install Ddiidev.brasilapi
 
       - name: Move brasilapi source code to path start
-        run: sudo mv ~/.vmodules/ldedev/brasilapi /brasilapi
+        run: sudo mv ~/.vmodules/ddiidev/brasilapi /brasilapi
 
       - name: Construct doc
         run: v doc -comments -readme -f html -all -m /brasilapi
