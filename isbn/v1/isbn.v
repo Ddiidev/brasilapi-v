@@ -45,6 +45,10 @@ pub fn get(param ParamGet) !ISBN {
 		message: err.msg()
 	} }
 
+	if resp.status_code >= 500 {
+		return error_with_code(resp.status_msg, resp.status_code)
+	}
+
 	if resp.status_code != 200 {
 		return json.decode(IsbnError, resp.body) or { return IsbnError{
 			message: err.msg()

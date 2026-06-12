@@ -58,6 +58,10 @@ pub fn cidades(params ParamCidades) ![]Cidade {
 		message: err.msg()
 	} }
 
+	if resp.status_code >= 500 {
+		return error_with_code(resp.status_msg, resp.status_code)
+	}
+
 	if resp.status_code != 200 {
 		return json.decode(CptecError, resp.body) or {
 			return CptecError{
@@ -89,6 +93,10 @@ pub fn clima_capital() ![]Capital {
 	resp := http.get(v1.uri_clima_capital) or { return CptecError{
 		message: err.msg()
 	} }
+
+	if resp.status_code >= 500 {
+		return error_with_code(resp.status_msg, resp.status_code)
+	}
 
 	if resp.status_code != 200 {
 		return json.decode(CptecError, resp.body) or {
@@ -122,6 +130,10 @@ pub fn clima_aeroporto(icao_code string) !Capital {
 		return CptecError{
 			message: err.msg()
 		}
+	}
+
+	if resp.status_code >= 500 {
+		return error_with_code(resp.status_msg, resp.status_code)
 	}
 
 	if resp.status_code != 200 {
@@ -164,6 +176,10 @@ pub fn previsao_cidade(params ParamPrevisaoCidade) !Previsiao {
 		}
 	}
 
+	if resp.status_code >= 500 {
+		return error_with_code(resp.status_msg, resp.status_code)
+	}
+
 	if resp.status_code != 200 {
 		return json.decode(CptecError, resp.body) or {
 			return CptecError{
@@ -202,6 +218,10 @@ pub fn previsao_oceanica(params ParamPrevisaoCidade) !PrevisaOceanica {
 		return CptecError{
 			message: err.msg()
 		}
+	}
+
+	if resp.status_code >= 500 {
+		return error_with_code(resp.status_msg, resp.status_code)
 	}
 
 	if resp.status_code != 200 {

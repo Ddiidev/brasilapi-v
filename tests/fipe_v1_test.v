@@ -7,7 +7,11 @@ fn test_listar_tabelas_de_referencia() {
 	if tabelas := fipe_.get_tabelas_referencia() {
 		assert tabelas.len > 0
 	} else {
-		assert false
+		if err.code() >= 500 {
+			assert true
+		} else {
+			assert false, err.msg()
+		}
 	}
 }
 
@@ -29,7 +33,11 @@ fn test_get_precos_veiculos_when_codigo_fipe_valid() {
 		assert precos.len > 0
 		assert precos.all(it.marca == 'Acura')
 	} else {
-		assert false
+		if err.code() >= 500 {
+			assert true
+		} else {
+			assert false, err.msg()
+		}
 	}
 }
 
@@ -39,7 +47,11 @@ fn test_get_marcas_valid() {
 	if marcas := fipe_.get_marcas(tipo_veiculo: tipo_veiculo) {
 		assert true
 	} else {
-		assert false
+		if err.code() >= 500 {
+			assert true
+		} else {
+			assert false, err.msg()
+		}
 	}
 }
 
@@ -53,8 +65,26 @@ fn test_object_error_when_data_invalid() {
 		if err is errors.FipeError {
 			assert err.@type == 'bad_request'
 				&& ['Tabela', 'inválida'].all(err.message.contains(it))
+		} else if err.code() >= 500 {
+			assert true
 		} else {
-			assert false
+			assert false, err.msg()
+		}
+	}
+}
+
+fn test_get_veiculos_valid() {
+	tipo_veiculo := fipe_.TiposVeiculo.carros
+	codigo_marca := 21
+
+	if veiculos := fipe_.get_veiculos(tipo_veiculo: tipo_veiculo, codigo_marca: codigo_marca) {
+		assert veiculos.len > 0
+		assert veiculos.any(it.modelo != '')
+	} else {
+		if err.code() >= 500 {
+			assert true
+		} else {
+			assert false, err.msg()
 		}
 	}
 }

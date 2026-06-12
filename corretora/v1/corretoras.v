@@ -27,7 +27,7 @@ pub fn get_all() ![]Corretora {
 		message: err.msg()
 	} }
 
-	if resp.status_code == 500 {
+	if resp.status_code >= 500 {
 		return error_with_code(resp.status_msg, resp.status_code)
 	}
 
@@ -63,6 +63,10 @@ pub fn get_by_cnpj(cnpj_code_ CNPJ) !Corretora {
 	resp := http.get('${v1.uri}/${cnpj_code}') or { return CorretoraError{
 		message: err.msg()
 	} }
+
+	if resp.status_code >= 500 {
+		return error_with_code(resp.status_msg, resp.status_code)
+	}
 
 	if resp.status_code == 404 {
 		return json.decode(CorretoraError, resp.body) or {

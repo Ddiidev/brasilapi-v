@@ -40,6 +40,10 @@ pub fn get_municipios(param ParamsGet) ![]IBGE {
 		message: err.msg()
 	} }
 
+	if resp.status_code >= 500 {
+		return error_with_code(resp.status_msg, resp.status_code)
+	}
+
 	if resp.status_code != 200 {
 		return json.decode(IBGEError, resp.body) or { return IBGEError{
 			message: err.msg()
@@ -70,6 +74,10 @@ pub fn get_estados() ![]Estado {
 	resp := http.get(v1.uri_uf) or { return IBGEError{
 		message: err.msg()
 	} }
+
+	if resp.status_code >= 500 {
+		return error_with_code(resp.status_msg, resp.status_code)
+	}
 
 	if resp.status_code != 200 {
 		return IBGEError{
@@ -102,6 +110,10 @@ pub fn get_estado_por_sigla_ou_codigo(sigla_ou_codigo SiglaCodigo) !Estado {
 		return IBGEError{
 			message: err.msg()
 		}
+	}
+
+	if resp.status_code >= 500 {
+		return error_with_code(resp.status_msg, resp.status_code)
 	}
 
 	if resp.status_code != 200 {

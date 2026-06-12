@@ -31,7 +31,11 @@ pub fn get(cnpj_code_ CNPJ) !Cnpj {
 		}
 	}
 
-	if resp.status_code == 400 {
+	if resp.status_code >= 500 {
+		return error_with_code(resp.status_msg, resp.status_code)
+	}
+
+	if resp.status_code != 200 {
 		return json.decode(errors.CnpjError, resp.body) or {
 			return errors.CnpjError{
 				message: err.msg()

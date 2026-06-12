@@ -26,6 +26,10 @@ fn get_all() ![]Bank {
 		message: err.msg()
 	} }
 
+	if resp.status_code >= 500 {
+		return error_with_code(resp.status_msg, resp.status_code)
+	}
+
 	if resp.status_code != 200 {
 		return json.decode(BanksError, resp.body) or {
 			return BanksError{
@@ -58,7 +62,11 @@ fn get(code int) !Bank {
 		message: err.msg()
 	} }
 
-	if resp.status_code == 404 {
+	if resp.status_code >= 500 {
+		return error_with_code(resp.status_msg, resp.status_code)
+	}
+
+	if resp.status_code != 200 {
 		return json.decode(BanksError, resp.body) or {
 			return BanksError{
 				message: err.msg()

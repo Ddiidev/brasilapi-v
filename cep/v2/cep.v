@@ -27,7 +27,11 @@ pub fn get(cep_code string) !Cep {
 		message: err.msg()
 	} }
 
-	if resp.status_code == 404 {
+	if resp.status_code >= 500 {
+		return error_with_code(resp.status_msg, resp.status_code)
+	}
+
+	if resp.status_code != 200 {
 		return json.decode(errors.CepError, resp.body) or {
 			return errors.CepError{
 				message: err.msg()

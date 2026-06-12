@@ -32,6 +32,10 @@ Uma [lib](https://vpm.vlang.io/mod/Ddiidev.brasilapi) para a API do [BrasilAPI](
 - [X] **PIX**
 - [X] **NCM**
 - [X] **CPTEC**
+- [X] **Câmbio**
+- [X] **Fundos de investimento**
+- [X] **Tickers**
+- [X] **TUSS**
 
 # Como contribuir
 

@@ -28,6 +28,10 @@ pub fn get_participants() ![]Pix {
 		message: err.msg()
 	} }
 
+	if resp.status_code >= 500 {
+		return error_with_code(resp.status_msg, resp.status_code)
+	}
+
 	if resp.status_code != 200 {
 		return json.decode(PixError, resp.body) or { return PixError{
 			message: err.msg()
