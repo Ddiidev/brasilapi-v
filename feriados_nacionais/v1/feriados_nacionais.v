@@ -27,7 +27,11 @@ pub fn get_all(year string) ![]FeriadoNacional {
 		}
 	}
 
-	if resp.status_code in [404, 500] {
+	if resp.status_code >= 500 {
+		return error_with_code(resp.status_msg, resp.status_code)
+	}
+
+	if resp.status_code == 404 {
 		return json.decode(errors.FeriadosNacionaisError, resp.body) or {
 			return errors.FeriadosNacionaisError{
 				message: err.msg()

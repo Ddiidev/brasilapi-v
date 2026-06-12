@@ -9,8 +9,8 @@ pub enum Providers {
 
 const names_providers = {
 	Providers.dados_abertos_br: 'dados-abertos-br'
-	Providers.gov:              'gov'
-	Providers.wikipedia:        'wikipedia'
+	Providers.gov: 'gov'
+	Providers.wikipedia: 'wikipedia'
 }
 
 pub fn (p Providers) get_names_setad() []string {

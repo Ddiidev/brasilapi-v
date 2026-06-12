@@ -28,21 +28,27 @@ const uri = 'https://brasilapi.com.br/api/ddd/v1/'
 // Caso o DDD não exista, será retornado um erro do tipo `errors.DddError`
 // Caso ocorra alguma falha na api, será retornado um erro do tipo `IError`
 pub fn get(ddd string) !Ddd {
-	resp := http.get('${v1.uri}/${ddd}') or { return errors.DddError{
-		message: err.msg()
-	} }
+	resp := http.get('${v1.uri}/${ddd}') or {
+		return errors.DddError{
+			message: err.msg()
+		}
+	}
 
-	if resp.status_code in [404, 500] {
+	if resp.status_code >= 500 {
+		return error_with_code(resp.status_msg, resp.status_code)
+	}
+
+	if resp.status_code != 200 {
 		return json.decode(errors.DddError, resp.body) or {
 			return errors.DddError{
 				message: err.msg()
 			}
 		}
-	} else if resp.status_code == 504 {
-		return error('timeout')
-	} else {
-		return json.decode(Ddd, resp.body) or { return errors.DddError{
+	}
+
+	return json.decode(Ddd, resp.body) or {
+		return errors.DddError{
 			message: err.msg()
-		} }
+		}
 	}
 }

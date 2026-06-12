@@ -28,9 +28,15 @@ pub fn domain_registered(domain string) !RegistroBr {
 		}
 	}
 
-	resp := http.get('${v1.uri}/${domain}') or { return RegistroBrError{
-		message: err.msg()
-	} }
+	resp := http.get('${v1.uri}/${domain}') or {
+		return RegistroBrError{
+			message: err.msg()
+		}
+	}
+
+	if resp.status_code >= 500 {
+		return error_with_code(resp.status_msg, resp.status_code)
+	}
 
 	if resp.status_code != 200 {
 		return json.decode(RegistroBrError, resp.body) or {

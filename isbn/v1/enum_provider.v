@@ -11,10 +11,10 @@ pub enum Provider {
 }
 
 const names_provider = {
-	Provider.cbl:               'cbl'
+	Provider.cbl: 'cbl'
 	Provider.mercado_editorial: 'mercado-editorial'
-	Provider.open_library:      'open-library'
-	Provider.google_books:      'google-books'
+	Provider.open_library: 'open-library'
+	Provider.google_books: 'google-books'
 }
 
 pub fn get_enum_by_name(name string) !Provider {

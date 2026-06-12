@@ -22,17 +22,54 @@ const uri = 'https://brasilapi.com.br/api/taxas/v1'
 //
 // Caso ocorra alguma falha irá retornar um errors.TaxaError
 pub fn get() ![]Taxa {
-	resp := http.get(v1.uri) or { return TaxaError{
-		message: err.msg()
-	} }
-
-	if resp.status_code != 200 {
-		return json.decode(TaxaError, resp.body) or { return TaxaError{
+	resp := http.get(v1.uri) or {
+		return TaxaError{
 			message: err.msg()
-		} }
+		}
 	}
 
-	return json.decode([]Taxa, resp.body) or { return TaxaError{
-		message: err.msg()
-	} }
+	if resp.status_code >= 500 {
+		return error_with_code(resp.status_msg, resp.status_code)
+	}
+
+	if resp.status_code != 200 {
+		return json.decode(TaxaError, resp.body) or {
+			return TaxaError{
+				message: err.msg()
+			}
+		}
+	}
+
+	return json.decode([]Taxa, resp.body) or {
+		return TaxaError{
+			message: err.msg()
+		}
+	}
+}
+
+// get_by_sigla Busca as informações de uma taxa a partir do seu nome/sigla.
+pub fn get_by_sigla(sigla string) !Taxa {
+	resp := http.get('${v1.uri}/${sigla}') or {
+		return TaxaError{
+			message: err.msg()
+		}
+	}
+
+	if resp.status_code >= 500 {
+		return error_with_code(resp.status_msg, resp.status_code)
+	}
+
+	if resp.status_code != 200 {
+		return json.decode(TaxaError, resp.body) or {
+			return TaxaError{
+				message: err.msg()
+			}
+		}
+	}
+
+	return json.decode(Taxa, resp.body) or {
+		return TaxaError{
+			message: err.msg()
+		}
+	}
 }

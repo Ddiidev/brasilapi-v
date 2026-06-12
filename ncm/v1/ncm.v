@@ -58,27 +58,35 @@ pub fn get(find ParamGet) ![]Ncm {
 		v1.uri_ncm
 	}
 
-	resp := http.get(uri) or { return NcmError{
-		message: err.msg()
-	} }
-
-	if resp.status_code == 504 {
-		return error('timeout')
-	} else if resp.status_code != 200 {
-		return json.decode(NcmError, resp.body) or { return NcmError{
+	resp := http.get(uri) or {
+		return NcmError{
 			message: err.msg()
-		} }
+		}
+	}
+
+	if resp.status_code >= 500 {
+		return error_with_code(resp.status_msg, resp.status_code)
+	} else if resp.status_code != 200 {
+		return json.decode(NcmError, resp.body) or {
+			return NcmError{
+				message: err.msg()
+			}
+		}
 	}
 
 	if find.code != none {
-		ncm := json.decode(Ncm, resp.body) or { return NcmError{
-			message: err.msg()
-		} }
+		ncm := json.decode(Ncm, resp.body) or {
+			return NcmError{
+				message: err.msg()
+			}
+		}
 
 		return [ncm]
 	} else {
-		return json.decode([]Ncm, resp.body) or { return NcmError{
-			message: err.msg()
-		} }
+		return json.decode([]Ncm, resp.body) or {
+			return NcmError{
+				message: err.msg()
+			}
+		}
 	}
 }
