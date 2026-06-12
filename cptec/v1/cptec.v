@@ -26,7 +26,7 @@ pub:
 pub struct ParamPrevisaoCidade {
 pub:
 	city_code int
-	days      i16 = 1
+	days i16 = 1
 }
 
 // cidades Retorna listagem com todas as cidades junto a seus respectivos códigos presentes nos serviços da CPTEC
@@ -54,9 +54,11 @@ pub fn cidades(params ParamCidades) ![]Cidade {
 		}
 	}
 
-	resp := http.get(uri) or { return CptecError{
-		message: err.msg()
-	} }
+	resp := http.get(uri) or {
+		return CptecError{
+			message: err.msg()
+		}
+	}
 
 	if resp.status_code >= 500 {
 		return error_with_code(resp.status_msg, resp.status_code)
@@ -70,9 +72,11 @@ pub fn cidades(params ParamCidades) ![]Cidade {
 		}
 	}
 
-	return json.decode([]Cidade, resp.body) or { return CptecError{
-		message: err.msg()
-	} }
+	return json.decode([]Cidade, resp.body) or {
+		return CptecError{
+			message: err.msg()
+		}
+	}
 }
 
 // clima_capital Retorna condições meteorológicas atuais nas capitais do país, com base nas estações de solo de seu aeroporto.
@@ -90,9 +94,11 @@ pub fn cidades(params ParamCidades) ![]Cidade {
 //
 // Caso ocorra alguma falha irá retornar um errors.CptecError
 pub fn clima_capital() ![]Capital {
-	resp := http.get(v1.uri_clima_capital) or { return CptecError{
-		message: err.msg()
-	} }
+	resp := http.get(v1.uri_clima_capital) or {
+		return CptecError{
+			message: err.msg()
+		}
+	}
 
 	if resp.status_code >= 500 {
 		return error_with_code(resp.status_msg, resp.status_code)
@@ -106,9 +112,11 @@ pub fn clima_capital() ![]Capital {
 		}
 	}
 
-	return json.decode([]Capital, resp.body) or { return CptecError{
-		message: err.msg()
-	} }
+	return json.decode([]Capital, resp.body) or {
+		return CptecError{
+			message: err.msg()
+		}
+	}
 }
 
 // clima_aeroporto Retorna condições meteorológicas atuais no aeroporto solicitado. Este endpoint utiliza o código ICAO (4 dígitos) do aeroporto.
@@ -144,9 +152,11 @@ pub fn clima_aeroporto(icao_code string) !Capital {
 		}
 	}
 
-	return json.decode(Capital, resp.body) or { return CptecError{
-		message: err.msg()
-	} }
+	return json.decode(Capital, resp.body) or {
+		return CptecError{
+			message: err.msg()
+		}
+	}
 }
 
 // previsao_cidade Retorna Pervisão meteorológica de 1 até 6 dias da cidade informada.
@@ -188,9 +198,11 @@ pub fn previsao_cidade(params ParamPrevisaoCidade) !Previsiao {
 		}
 	}
 
-	return json.decode(Previsiao, resp.body) or { return CptecError{
-		message: err.msg()
-	} }
+	return json.decode(Previsiao, resp.body) or {
+		return CptecError{
+			message: err.msg()
+		}
+	}
 }
 
 // previsao_oceanica Retorna Pervisão oceânica de 1 até 6 dias da cidade informada.
@@ -232,7 +244,9 @@ pub fn previsao_oceanica(params ParamPrevisaoCidade) !PrevisaOceanica {
 		}
 	}
 
-	return json.decode(PrevisaOceanica, resp.body) or { return CptecError{
-		message: err.msg()
-	} }
+	return json.decode(PrevisaOceanica, resp.body) or {
+		return CptecError{
+			message: err.msg()
+		}
+	}
 }

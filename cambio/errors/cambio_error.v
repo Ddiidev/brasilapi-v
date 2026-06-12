@@ -4,8 +4,8 @@ pub struct CambioError {
 	Error
 pub:
 	message string
-	@type   string
-	name    string
+	@type string
+	name string
 }
 
 pub fn (err CambioError) msg() string {

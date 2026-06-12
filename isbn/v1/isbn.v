@@ -10,7 +10,7 @@ const uri_isbn = 'https://brasilapi.com.br/api/isbn/v1'
 @[params]
 pub struct ParamGet {
 pub:
-	isbn     string   @[required]
+	isbn string @[required]
 	provider Provider = Provider.google_books | .cbl | .open_library | .mercado_editorial
 }
 
@@ -41,23 +41,29 @@ pub fn get(param ParamGet) !ISBN {
 
 	uri := '${v1.uri_isbn}/${isbn}?providers=${param.provider.get_names_setad().join(',')}'
 
-	resp := http.get(uri) or { return IsbnError{
-		message: err.msg()
-	} }
+	resp := http.get(uri) or {
+		return IsbnError{
+			message: err.msg()
+		}
+	}
 
 	if resp.status_code >= 500 {
 		return error_with_code(resp.status_msg, resp.status_code)
 	}
 
 	if resp.status_code != 200 {
-		return json.decode(IsbnError, resp.body) or { return IsbnError{
-			message: err.msg()
-		} }
+		return json.decode(IsbnError, resp.body) or {
+			return IsbnError{
+				message: err.msg()
+			}
+		}
 	}
 
-	temp_isbn := json.decode(ISBN_, resp.body) or { return IsbnError{
-		message: err.msg()
-	} }
+	temp_isbn := json.decode(ISBN_, resp.body) or {
+		return IsbnError{
+			message: err.msg()
+		}
+	}
 
 	return ISBN{
 		isbn: temp_isbn.isbn

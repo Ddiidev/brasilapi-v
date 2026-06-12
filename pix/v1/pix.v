@@ -24,23 +24,29 @@ const uri_pix = 'https://brasilapi.com.br/api/pix/v1'
 pub fn get_participants() ![]Pix {
 	uri := '${v1.uri_pix}/participants'
 
-	resp := http.get(uri) or { return PixError{
-		message: err.msg()
-	} }
+	resp := http.get(uri) or {
+		return PixError{
+			message: err.msg()
+		}
+	}
 
 	if resp.status_code >= 500 {
 		return error_with_code(resp.status_msg, resp.status_code)
 	}
 
 	if resp.status_code != 200 {
-		return json.decode(PixError, resp.body) or { return PixError{
-			message: err.msg()
-		} }
+		return json.decode(PixError, resp.body) or {
+			return PixError{
+				message: err.msg()
+			}
+		}
 	}
 
-	temp_pix := json.decode([]TempPix, resp.body) or { return PixError{
-		message: err.msg()
-	} }
+	temp_pix := json.decode([]TempPix, resp.body) or {
+		return PixError{
+			message: err.msg()
+		}
+	}
 
 	return temp_pix.get_pixs() or { [] }
 }

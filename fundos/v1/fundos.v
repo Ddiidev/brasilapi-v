@@ -30,42 +30,54 @@ fn build_query(params ParamsGetFundos) string {
 
 // get Retorna lista paginada de fundos de investimentos registrados na CVM.
 pub fn get(params ParamsGetFundos) !FundosResponse {
-	resp := http.get('${v1.uri}${build_query(params)}') or { return FundosError{
-		message: err.msg()
-	} }
+	resp := http.get('${v1.uri}${build_query(params)}') or {
+		return FundosError{
+			message: err.msg()
+		}
+	}
 
 	if resp.status_code >= 500 {
 		return error_with_code(resp.status_msg, resp.status_code)
 	}
 
 	if resp.status_code != 200 {
-		return json.decode(FundosError, resp.body) or { return FundosError{
-			message: err.msg()
-		} }
+		return json.decode(FundosError, resp.body) or {
+			return FundosError{
+				message: err.msg()
+			}
+		}
 	}
 
-	return json.decode(FundosResponse, resp.body) or { return FundosError{
-		message: err.msg()
-	} }
+	return json.decode(FundosResponse, resp.body) or {
+		return FundosError{
+			message: err.msg()
+		}
+	}
 }
 
 // get_by_cnpj Busca detalhes de um fundo na CVM pelo CNPJ.
 pub fn get_by_cnpj(cnpj string) !Fundo {
-	resp := http.get('${v1.uri}/${urllib.path_escape(cnpj)}') or { return FundosError{
-		message: err.msg()
-	} }
+	resp := http.get('${v1.uri}/${urllib.path_escape(cnpj)}') or {
+		return FundosError{
+			message: err.msg()
+		}
+	}
 
 	if resp.status_code >= 500 {
 		return error_with_code(resp.status_msg, resp.status_code)
 	}
 
 	if resp.status_code != 200 {
-		return json.decode(FundosError, resp.body) or { return FundosError{
-			message: err.msg()
-		} }
+		return json.decode(FundosError, resp.body) or {
+			return FundosError{
+				message: err.msg()
+			}
+		}
 	}
 
-	return json.decode(Fundo, resp.body) or { return FundosError{
-		message: err.msg()
-	} }
+	return json.decode(Fundo, resp.body) or {
+		return FundosError{
+			message: err.msg()
+		}
+	}
 }

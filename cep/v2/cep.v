@@ -23,9 +23,11 @@ const uri = 'https://brasilapi.com.br/api/cep/v2'
 //
 // Caso não seja encontrado o cep, irá retornar um errors.CepError
 pub fn get(cep_code string) !Cep {
-	resp := http.get('${v2.uri}/${cep_code}') or { return errors.CepError{
-		message: err.msg()
-	} }
+	resp := http.get('${v2.uri}/${cep_code}') or {
+		return errors.CepError{
+			message: err.msg()
+		}
+	}
 
 	if resp.status_code >= 500 {
 		return error_with_code(resp.status_msg, resp.status_code)
@@ -39,7 +41,9 @@ pub fn get(cep_code string) !Cep {
 		}
 	}
 
-	return json.decode(Cep, resp.body) or { return errors.CepError{
-		message: err.msg()
-	} }
+	return json.decode(Cep, resp.body) or {
+		return errors.CepError{
+			message: err.msg()
+		}
+	}
 }

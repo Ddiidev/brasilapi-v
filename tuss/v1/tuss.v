@@ -10,32 +10,32 @@ const uri = 'https://brasilapi.com.br/api/tuss/v1'
 @[params]
 pub struct ParamsGetTuss {
 pub:
-	name   ?string
-	tuss   ?string
-	limit  ?int
+	name ?string
+	tuss ?string
+	limit ?int
 	offset ?int
 }
 
 @[params]
 pub struct ParamsSearchTuss {
 pub:
-	q      ?string
-	name   ?string
-	tuss   ?string
+	q ?string
+	name ?string
+	tuss ?string
 	@match ?string
-	sort   ?string
-	order  ?string
+	sort ?string
+	order ?string
 	fields ?string
-	limit  ?int
+	limit ?int
 	offset ?int
 }
 
 @[params]
 pub struct ParamsAutocompleteTuss {
 pub:
-	q     ?string
-	name  ?string
-	tuss  ?string
+	q ?string
+	name ?string
+	tuss ?string
 	limit ?int
 }
 
@@ -120,84 +120,108 @@ fn autocomplete_query(params ParamsAutocompleteTuss) string {
 
 // get Lista termos TUSS com suporte a busca por nome, código e paginação.
 pub fn get(params ParamsGetTuss) !TussResponse {
-	resp := http.get('${v1.uri}${get_query(params)}') or { return TussError{
-		message: err.msg()
-	} }
+	resp := http.get('${v1.uri}${get_query(params)}') or {
+		return TussError{
+			message: err.msg()
+		}
+	}
 
 	if resp.status_code >= 500 {
 		return error_with_code(resp.status_msg, resp.status_code)
 	}
 
 	if resp.status_code != 200 {
-		return json.decode(TussError, resp.body) or { return TussError{
-			message: err.msg()
-		} }
+		return json.decode(TussError, resp.body) or {
+			return TussError{
+				message: err.msg()
+			}
+		}
 	}
 
-	return json.decode(TussResponse, resp.body) or { return TussError{
-		message: err.msg()
-	} }
+	return json.decode(TussResponse, resp.body) or {
+		return TussError{
+			message: err.msg()
+		}
+	}
 }
 
 // get_by_code Detalha um termo TUSS pelo código.
 pub fn get_by_code(tuss string) !TussItem {
-	resp := http.get('${v1.uri}/${urllib.path_escape(tuss)}') or { return TussError{
-		message: err.msg()
-	} }
+	resp := http.get('${v1.uri}/${urllib.path_escape(tuss)}') or {
+		return TussError{
+			message: err.msg()
+		}
+	}
 
 	if resp.status_code >= 500 {
 		return error_with_code(resp.status_msg, resp.status_code)
 	}
 
 	if resp.status_code != 200 {
-		return json.decode(TussError, resp.body) or { return TussError{
-			message: err.msg()
-		} }
+		return json.decode(TussError, resp.body) or {
+			return TussError{
+				message: err.msg()
+			}
+		}
 	}
 
-	return json.decode(TussItem, resp.body) or { return TussError{
-		message: err.msg()
-	} }
+	return json.decode(TussItem, resp.body) or {
+		return TussError{
+			message: err.msg()
+		}
+	}
 }
 
 // search Executa busca avançada de termos TUSS.
 pub fn search(params ParamsSearchTuss) !TussResponse {
-	resp := http.get('${v1.uri}/search${search_query(params)}') or { return TussError{
-		message: err.msg()
-	} }
+	resp := http.get('${v1.uri}/search${search_query(params)}') or {
+		return TussError{
+			message: err.msg()
+		}
+	}
 
 	if resp.status_code >= 500 {
 		return error_with_code(resp.status_msg, resp.status_code)
 	}
 
 	if resp.status_code != 200 {
-		return json.decode(TussError, resp.body) or { return TussError{
-			message: err.msg()
-		} }
+		return json.decode(TussError, resp.body) or {
+			return TussError{
+				message: err.msg()
+			}
+		}
 	}
 
-	return json.decode(TussResponse, resp.body) or { return TussError{
-		message: err.msg()
-	} }
+	return json.decode(TussResponse, resp.body) or {
+		return TussError{
+			message: err.msg()
+		}
+	}
 }
 
 // autocomplete Retorna sugestões de termos TUSS a partir de texto livre.
 pub fn autocomplete(params ParamsAutocompleteTuss) ![]TussItem {
-	resp := http.get('${v1.uri}/autocomplete${autocomplete_query(params)}') or { return TussError{
-		message: err.msg()
-	} }
+	resp := http.get('${v1.uri}/autocomplete${autocomplete_query(params)}') or {
+		return TussError{
+			message: err.msg()
+		}
+	}
 
 	if resp.status_code >= 500 {
 		return error_with_code(resp.status_msg, resp.status_code)
 	}
 
 	if resp.status_code != 200 {
-		return json.decode(TussError, resp.body) or { return TussError{
-			message: err.msg()
-		} }
+		return json.decode(TussError, resp.body) or {
+			return TussError{
+				message: err.msg()
+			}
+		}
 	}
 
-	return json.decode([]TussItem, resp.body) or { return TussError{
-		message: err.msg()
-	} }
+	return json.decode([]TussItem, resp.body) or {
+		return TussError{
+			message: err.msg()
+		}
+	}
 }

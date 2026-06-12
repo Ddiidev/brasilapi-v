@@ -4,48 +4,48 @@ import time
 
 pub struct Corretora {
 pub:
-	cnpj                     string
-	@type                    string
-	nome_social              string
-	nome_comercial           string
-	status                   string
-	email                    string
-	telefone                 string
-	cep                      string
-	pais                     string
-	uf                       string
-	municipio                string
-	bairro                   string
-	complemento              string
-	logradouro               string
-	data_patrimonio_liquido  time.Time
+	cnpj string
+	@type string
+	nome_social string
+	nome_comercial string
+	status string
+	email string
+	telefone string
+	cep string
+	pais string
+	uf string
+	municipio string
+	bairro string
+	complemento string
+	logradouro string
+	data_patrimonio_liquido time.Time
 	valor_patrimonio_liquido f64
-	codigo_cvm               string
-	data_inicio_situacao     time.Time
-	data_registro            time.Time
+	codigo_cvm string
+	data_inicio_situacao time.Time
+	data_registro time.Time
 }
 
 struct Corretora_temp {
 pub:
-	cnpj                     string
-	@type                    string
-	nome_social              string
-	nome_comercial           string
-	status                   string
-	email                    string
-	telefone                 string
-	cep                      string
-	pais                     string
-	uf                       string
-	municipio                string
-	bairro                   string
-	complemento              string
-	logradouro               string
-	data_patrimonio_liquido  string
+	cnpj string
+	@type string
+	nome_social string
+	nome_comercial string
+	status string
+	email string
+	telefone string
+	cep string
+	pais string
+	uf string
+	municipio string
+	bairro string
+	complemento string
+	logradouro string
+	data_patrimonio_liquido string
 	valor_patrimonio_liquido string
-	codigo_cvm               string
-	data_inicio_situacao     string
-	data_registro            string
+	codigo_cvm string
+	data_inicio_situacao string
+	data_registro string
 }
 
 // get_corretoras faz um parser da struct Corretora_temp para Corretora

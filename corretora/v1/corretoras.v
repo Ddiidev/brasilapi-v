@@ -23,9 +23,11 @@ const uri = 'https://brasilapi.com.br/api/cvm/corretoras/v1'
 // ```
 //
 pub fn get_all() ![]Corretora {
-	resp := http.get(v1.uri) or { return CorretoraError{
-		message: err.msg()
-	} }
+	resp := http.get(v1.uri) or {
+		return CorretoraError{
+			message: err.msg()
+		}
+	}
 
 	if resp.status_code >= 500 {
 		return error_with_code(resp.status_msg, resp.status_code)
@@ -60,9 +62,11 @@ pub fn get_all() ![]Corretora {
 pub fn get_by_cnpj(cnpj_code_ CNPJ) !Corretora {
 	mut cnpj_code := cnpj_code_.remove_format_cnpj()
 
-	resp := http.get('${v1.uri}/${cnpj_code}') or { return CorretoraError{
-		message: err.msg()
-	} }
+	resp := http.get('${v1.uri}/${cnpj_code}') or {
+		return CorretoraError{
+			message: err.msg()
+		}
+	}
 
 	if resp.status_code >= 500 {
 		return error_with_code(resp.status_msg, resp.status_code)

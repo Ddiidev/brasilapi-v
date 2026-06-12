@@ -4,8 +4,8 @@ pub struct TickersError {
 	Error
 pub:
 	message string
-	@type   string
-	name    string
+	@type string
+	name string
 }
 
 pub fn (err TickersError) msg() string {

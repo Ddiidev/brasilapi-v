@@ -8,8 +8,8 @@ pub:
 
 pub struct TussResponse {
 pub:
-	total  int
-	limit  int
+	total int
+	limit int
 	offset int
-	items  []TussItem
+	items []TussItem
 }
